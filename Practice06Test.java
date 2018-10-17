@@ -27,8 +27,11 @@ public class Practice06Test {
 	public boolean isPalindrome(String item) {
 		clearData();
 		for (int i = 0; i < item.length(); i++) {
-			stack.push(item.substring(i, i+1));
-			queue.enqueue(item.substring(i, i+1));
+			String nextItem = item.substring(i, i + 1).toLowerCase(); 
+			if (Character.isLetter(nextItem.charAt(0))) {
+				stack.push(nextItem);
+				queue.enqueue(nextItem);
+			}
 		}
 
 		while (! stack.empty() && ! queue.empty()) {
@@ -59,11 +62,11 @@ public class Practice06Test {
 			// First tests: is the queue correct? Is the stack correct?
 			String first = "first";
 			String second = "second";
-			queue.enqueue(first);
-			queue.enqueue(second);
+			queue.enqueue(first); 
+			queue.enqueue(second); 
 			if (queue.dequeue() == first && queue.dequeue() == second && queue.empty()) {
 				System.out.println("[+10%] Queue functions appear correct.");
-				grade += 10;
+				grade += 10; 
 			} else {
 				System.out.println("[ XX ] One or more Queue functions appear incorrect.");
 			}
@@ -84,8 +87,8 @@ public class Practice06Test {
 			}
 			boolean emptiedEarly = false;
 			for (int i = 0; i < size_of_test; i++) {
-				if ( queue.empty() || stack.empty()) {
-					emptiedEarly = true;
+				if (queue.empty() || stack.empty()) {
+					emptiedEarly = true; 
 				}
 				queue.dequeue();
 				stack.pop();
